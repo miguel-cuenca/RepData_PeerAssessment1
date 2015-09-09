@@ -77,12 +77,7 @@ rm(zipfile)</code></pre>
 activity$datetime &lt;- as.POSIXct(strptime(paste(activity$date, 
                                                formatC(activity$interval, width=4, flag=&quot;0&quot;), sep=&quot; &quot;),
                                                format = &quot;%Y-%m-%d %H%M&quot;))
-activity$date &lt;- as.POSIXct(strptime(activity$date, format = &quot;%Y-%m-%d&quot;))
-
-#activity$timelapse&lt;-hm(paste(substr(formatC(activity$interval, width=4, flag=&quot;0&quot;),1,2),
-#                                       &quot; &quot;,substr(formatC(activity$interval, width=4, flag=&quot;0&quot;),3,4)))
-
-#activity$dec_hour &lt;- hour(activity$datetime) + minute(activity$datetime)/60</code></pre>
+activity$date &lt;- as.POSIXct(strptime(activity$date, format = &quot;%Y-%m-%d&quot;))</code></pre>
 </div>
 <div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level2">
 <h2>What is mean total number of steps taken per day?</h2>
@@ -104,14 +99,7 @@ activity$date &lt;- as.POSIXct(strptime(activity$date, format = &quot;%Y-%m-%d&q
 <h2>What is the average daily activity pattern?</h2>
 <pre class="r"><code>avg_steps_time_slot &lt;- aggregate(steps~interval,activity,mean)
 avg_steps_time_slot$dec_hour&lt;-as.numeric(substr(formatC(avg_steps_time_slot$interval, width=4, flag=&quot;0&quot;),1,2))+
-                              as.numeric(substr(formatC(avg_steps_time_slot$interval, width=4, flag=&quot;0&quot;),3,4))/60
-
-
-#avg_steps_time_slot$timelapse&lt;-60*as.numeric(substr(formatC(avg_steps_time_slot$interval, width=4, flag=&quot;0&quot;),1,2))+
-#                                  as.numeric(substr(formatC(avg_steps_time_slot$interval, width=4, flag=&quot;0&quot;),3,4))
-
-#avg_steps_time_slot$hm&lt;-hm(paste(substr(formatC(avg_steps_time_slot$interval, width=4, flag=&quot;0&quot;),1,2),
-#                                         &quot; &quot;,substr(formatC(avg_steps_time_slot$interval, width=4, flag=&quot;0&quot;),3,4)))</code></pre>
+                              as.numeric(substr(formatC(avg_steps_time_slot$interval, width=4, flag=&quot;0&quot;),3,4))/60</code></pre>
 <p>Make a time series plot (i.e. type = “l”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)</p>
 <pre class="r"><code>plot(x = avg_steps_time_slot$dec_hour, 
      y = avg_steps_time_slot$steps,

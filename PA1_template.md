@@ -23,11 +23,6 @@ activity$datetime <- as.POSIXct(strptime(paste(activity$date,
                                                formatC(activity$interval, width=4, flag="0"), sep=" "),
                                                format = "%Y-%m-%d %H%M"))
 activity$date <- as.POSIXct(strptime(activity$date, format = "%Y-%m-%d"))
-
-#activity$timelapse<-hm(paste(substr(formatC(activity$interval, width=4, flag="0"),1,2),
-#                                       " ",substr(formatC(activity$interval, width=4, flag="0"),3,4)))
-
-#activity$dec_hour <- hour(activity$datetime) + minute(activity$datetime)/60
 ```
 
 
@@ -80,13 +75,6 @@ median(total_steps_day$steps)
 avg_steps_time_slot <- aggregate(steps~interval,activity,mean)
 avg_steps_time_slot$dec_hour<-as.numeric(substr(formatC(avg_steps_time_slot$interval, width=4, flag="0"),1,2))+
                               as.numeric(substr(formatC(avg_steps_time_slot$interval, width=4, flag="0"),3,4))/60
-
-
-#avg_steps_time_slot$timelapse<-60*as.numeric(substr(formatC(avg_steps_time_slot$interval, width=4, flag="0"),1,2))+
-#                                  as.numeric(substr(formatC(avg_steps_time_slot$interval, width=4, flag="0"),3,4))
-
-#avg_steps_time_slot$hm<-hm(paste(substr(formatC(avg_steps_time_slot$interval, width=4, flag="0"),1,2),
-#                                         " ",substr(formatC(avg_steps_time_slot$interval, width=4, flag="0"),3,4)))
 ```
 
 
